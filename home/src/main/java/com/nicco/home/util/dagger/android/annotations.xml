@@ -1,0 +1,5 @@
+<root>
+    <item name='dagger.android.ContributesAndroidInjector'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>

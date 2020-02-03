@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GenericEcommerceApp</string>
+    <string name="instructions_enable_dark_title">Habilitar Tema Dark</string>
+    <string name="textfield_label">label</string>
+</resources>

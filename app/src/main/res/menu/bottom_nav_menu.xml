@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/flow_home"
+        android:icon="@drawable/ic_home"
+        android:title=""/>
+
+    <item
+        android:id="@id/flow_categories"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title=""/>
+
+    <item
+        android:id="@id/flow_shopping_cart"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title=""/>
+
+    <item
+        android:id="@id/flow_wish"
+        android:icon="@drawable/ic_sentiment_very_satisfied_black_24dp"
+        android:title=""/>
+
+    <item
+        android:id="@id/flow_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title=""/>
+</menu>

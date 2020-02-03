@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/flow_home"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/flow_home"
+        android:name="com.nicco.home.presentation.view.fragment.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/flow_home_detail" />
+
+        <action
+            android:id="@+id/next_action_categories"
+            app:destination="@+id/flow_categories" />
+        <action
+            android:id="@+id/next_action_seatch"
+            app:destination="@+id/flow_search" />
+        <action
+            android:id="@+id/next_action_wish"
+            app:destination="@+id/flow_wish" />
+
+        <action
+            android:id="@+id/next_action_shopping_cart"
+            app:destination="@+id/flow_shopping_cart" />
+
+        <action
+            android:id="@+id/next_action_profile"
+            app:destination="@+id/flow_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/flow_home_detail"
+        android:name="com.nicco.home.presentation.view.fragment.HomeDetailFragment"
+        tools:layout="@layout/fragment_home_detail">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_categories"
+        android:name="com.nicco.categories.CategoriesFragment"
+        tools:layout="@layout/fragment_categories">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_search"
+        android:name="com.nicco.search.SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_wish"
+        android:name="com.nicco.wish.WishFragment"
+        tools:layout="@layout/fragment_wish">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_profile"
+        android:name="com.nicco.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/flow_shopping_cart"
+        android:name="com.nicco.shoppingcart.ShoppingCartFragment"
+        tools:layout="@layout/fragment_wish">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_login"
+        android:name="com.nicco.login.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/flow_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flow_settings"
+        android:name="com.nicco.genericecommerceapp.ui.SettingsFragment"
+        android:label="Configuracoes"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

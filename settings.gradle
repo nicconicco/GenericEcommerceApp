@@ -1,0 +1,10 @@
+include ':app',
+        ':login',
+        ':usecase',
+        ':home',
+        ':profile',
+        ':wish',
+        ':shoppingcart',
+        ':categories',
+        ':search'
+rootProject.name='GenericEcommerceApp'

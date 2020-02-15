@@ -9,11 +9,6 @@ class RemoteHomeDataSourceImp(val homeApi: HomeCardApi): RemoteHomeDataSource {
 
     override suspend fun getListHome(): Flow<List<HomeCardResponse>>? {
         delay(2000)
-
         return homeApi.getHomeCard()
-//        throw IllegalArgumentException("Deu brio")
-//        CallRetrofit().sendPutMethod()
-//        val list : Flow<List<HomeCardModel>>? = emptyList<HomeCardModel>()
-        return null
     }
 }

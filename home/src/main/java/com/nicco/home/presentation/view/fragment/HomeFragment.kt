@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import com.nicco.core.di.networkModule
 import com.nicco.home.databinding.FragmentHomeBinding
 import com.nicco.home.di.module.*
 import com.nicco.home.presentation.view.adapter.HomeCardAdapter
@@ -19,6 +20,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class HomeFragment : Fragment() {
 
     private val loadFeatures by lazy {
@@ -27,7 +30,7 @@ class HomeFragment : Fragment() {
                 homeDataSourcelModule,
                 homeRepositorylModule,
                 homeViewModelModule,
-                com.nicco.core.di.networkModule,
+                networkModule,
                 homeApiModule
                 )
         )
@@ -35,7 +38,6 @@ class HomeFragment : Fragment() {
 
     private fun injectFeatures() = loadFeatures
 
-    @ExperimentalCoroutinesApi
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val adapter by lazy {
@@ -47,8 +49,6 @@ class HomeFragment : Fragment() {
         injectFeatures()
     }
 
-    @ExperimentalCoroutinesApi
-    @FlowPreview
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,8 +61,6 @@ class HomeFragment : Fragment() {
         }.root
     }
 
-    @FlowPreview
-    @ExperimentalCoroutinesApi
     private fun subscribeUi(adapter: HomeCardAdapter) {
         homeViewModel.actionView.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -96,7 +94,9 @@ class HomeFragment : Fragment() {
             listOf(
                 homeViewModelModule,
                 homeRepositorylModule,
-                homeDataSourcelModule
+                homeDataSourcelModule,
+                networkModule,
+                homeApiModule
             )
         )
     }

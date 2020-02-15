@@ -2,13 +2,15 @@ package com.nicco.core.di
 
 import com.nicco.core.BuildConfig
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
-    factory { provideOkHttpClient() }
+    factory { provideOkHttpClient(get()) }
     single { provideRetrofit(get()) }
+    single { provideLogInterceptor() }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -16,7 +18,14 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(GsonConverterFactory.create()).build()
 }
 
-//fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient { future put interceptor log
-fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient().newBuilder().build()
+fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    return OkHttpClient().newBuilder().addInterceptor(loggingInterceptor).build()
+}
+
+fun provideLogInterceptor(): HttpLoggingInterceptor {
+    val logging = HttpLoggingInterceptor()
+
+    if (BuildConfig.DEBUG)
+        logging.level = HttpLoggingInterceptor.Level.BODY
+    return logging
 }

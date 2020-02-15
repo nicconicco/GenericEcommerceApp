@@ -8,9 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import com.nicco.home.databinding.FragmentHomeBinding
-import com.nicco.home.di.module.homeDataSourcelModule
-import com.nicco.home.di.module.homeRepositorylModule
-import com.nicco.home.di.module.homeViewModelModule
+import com.nicco.home.di.module.*
 import com.nicco.home.presentation.view.adapter.HomeCardAdapter
 import com.nicco.home.presentation.viewmodel.HomeViewModel
 import com.nicco.home.presentation.viewmodel.HomeViewAction
@@ -28,7 +26,9 @@ class HomeFragment : Fragment() {
             listOf(
                 homeDataSourcelModule,
                 homeRepositorylModule,
-                homeViewModelModule
+                homeViewModelModule,
+                com.nicco.core.di.networkModule,
+                homeApiModule
                 )
         )
     }

@@ -1,8 +1,7 @@
 package com.nicco.home
 
-import com.nicco.home.di.module.homeDataSourcelModule
-import com.nicco.home.di.module.homeRepositorylModule
-import com.nicco.home.di.module.homeViewModelModule
+import com.nicco.core.di.networkModule
+import com.nicco.home.di.module.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.test.runBlockingTest
@@ -26,7 +25,9 @@ class CheckHomeModulesTest : KoinTest {
             listOf(
                 homeViewModelModule,
                 homeRepositorylModule,
-                homeDataSourcelModule
+                homeDataSourcelModule,
+                networkModule,
+                homeApiModule
             )
         }.checkModules()
     }

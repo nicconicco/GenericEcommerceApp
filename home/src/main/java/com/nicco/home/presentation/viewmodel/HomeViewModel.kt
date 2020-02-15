@@ -5,6 +5,7 @@ import com.nicco.home.data.repository.HomeRepository
 import com.nicco.home.data.repository.HomeRepositoryImp
 import com.nicco.home.presentation.model.HomeCardModel
 import com.nicco.home.presentation.viewmodel.HomeViewAction.HomeLoading
+import com.nicco.home.presentation.viewmodel.mapper.ModelMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -34,8 +35,9 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
                 _actionView.value = HomeLoading(true)
                 val items = repository.getListHome()
                 items?.let { itens ->
-                    itens.asLiveData().let {
-                        _actionView.value = HomeViewAction.HomeSuccess(it.value)
+                    itens.asLiveData().let { response ->
+                        val result = ModelMapper.map(response)
+                        _actionView.value = HomeViewAction.HomeSuccess(result)
                     }
                 } ?: run {
                     _actionView.value = HomeLoading(false)

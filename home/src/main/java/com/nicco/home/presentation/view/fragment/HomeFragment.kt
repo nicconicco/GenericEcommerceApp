@@ -7,25 +7,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
-import com.nicco.home.BuildConfig
 import com.nicco.home.databinding.FragmentHomeBinding
 import com.nicco.home.di.module.homeDataSourcelModule
 import com.nicco.home.di.module.homeRepositorylModule
 import com.nicco.home.di.module.homeViewModelModule
 import com.nicco.home.presentation.view.adapter.HomeCardAdapter
 import com.nicco.home.presentation.viewmodel.HomeViewModel
-import com.nicco.home.presentation.viewmodel.HomeViewState
+import com.nicco.home.presentation.viewmodel.HomeViewAction
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import org.koin.core.context.unloadKoinModules
-import org.koin.core.logger.EmptyLogger
 
 class HomeFragment : Fragment() {
 
@@ -70,22 +64,22 @@ class HomeFragment : Fragment() {
     @FlowPreview
     @ExperimentalCoroutinesApi
     private fun subscribeUi(adapter: HomeCardAdapter) {
-        homeViewModel.homeState.observe(viewLifecycleOwner) { state ->
+        homeViewModel.actionView.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is HomeViewState.HomeLoading -> {
+                is HomeViewAction.HomeLoading -> {
                     setProgress(state)
                 }
-                is HomeViewState.HomeSuccess -> {
+                is HomeViewAction.HomeSuccess -> {
                     adapter.submitList(state.itens)
                 }
-                is HomeViewState.HomeError -> {
+                is HomeViewAction.HomeError -> {
                     Toast.makeText(context, state.msg, Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
-    private fun setProgress(state: HomeViewState.HomeLoading) {
+    private fun setProgress(state: HomeViewAction.HomeLoading) {
         when (state.loading) {
             true -> {
                 progress.visibility = View.VISIBLE

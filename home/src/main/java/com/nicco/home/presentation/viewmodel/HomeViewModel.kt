@@ -3,51 +3,50 @@ package com.nicco.home.presentation.viewmodel
 import androidx.lifecycle.*
 import com.nicco.home.data.repository.HomeRepositoryImp
 import com.nicco.home.presentation.model.HomeCardModel
-import com.nicco.home.presentation.viewmodel.HomeViewState.HomeLoading
+import com.nicco.home.presentation.viewmodel.HomeViewAction.HomeLoading
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
 
-sealed class HomeViewState {
-    open class HomeSuccess(val itens: List<HomeCardModel>?) : HomeViewState()
-    open class HomeError(val msg: String) : HomeViewState()
-    open class HomeLoading(val loading: Boolean) : HomeViewState()
+sealed class HomeViewAction {
+    open class HomeSuccess(val itens: List<HomeCardModel>?) : HomeViewAction()
+    open class HomeError(val msg: String) : HomeViewAction()
+    open class HomeLoading(val loading: Boolean) : HomeViewAction()
 }
 
 @ExperimentalCoroutinesApi
 @FlowPreview
 class HomeViewModel(private val repository: HomeRepositoryImp) : ViewModel() {
 
-    private val _homeState = MutableLiveData<HomeViewState>()
-    val homeState: LiveData<HomeViewState>
-        get() = _homeState
+    private val _actionView = MediatorLiveData<HomeViewAction>()
+    val actionView: LiveData<HomeViewAction>
+        get() = _actionView
 
     private val homeChannel = ConflatedBroadcastChannel<HomeCardModel?>()
 
     init {
         offerToChannel(HomeCardModel())
-
         homeChannel
             .asFlow()
             .mapLatest {
-                _homeState.value = HomeLoading(true)
+                _actionView.value = HomeLoading(true)
                 val items = repository.getListHome()
                 items?.let { itens ->
                     itens.asLiveData().let {
-                        _homeState.value = HomeViewState.HomeSuccess(it.value)
+                        _actionView.value = HomeViewAction.HomeSuccess(it.value)
                     }
                 } ?: run {
-                    _homeState.value = HomeViewState.HomeError("Lista vazia")
-                    _homeState.value = HomeLoading(false)
+                    _actionView.value = HomeLoading(false)
+                    _actionView.value = HomeViewAction.HomeError("Lista vazia")
                 }
             }
             .onCompletion {
-                _homeState.value = HomeLoading(false)
+                _actionView.value = HomeLoading(false)
             }
             .catch { throwable ->
-                _homeState.value = HomeLoading(false)
-                _homeState.value = HomeViewState.HomeError(throwable.message ?: "")
+                _actionView.value = HomeLoading(false)
+                _actionView.value = HomeViewAction.HomeError(throwable.message ?: "")
             }
             .launchIn(viewModelScope)
     }

@@ -1,0 +1,272 @@
+——
+
+
+
+Fetch branch
+
+
+
+Git fetch
+
+
+Partir da master sempre
+
+
+
+——
+
+
+
+Criar branch
+
+
+
+  -  git checkout -b feature/JET-xxx-description-english
+
+
+
+  -  git checkout -b bug fix/JET-xxx-description-english
+
+
+
+——
+
+
+
+Enviar já para o remoto:
+
+
+
+ - git push [ nome da branch que se criou ]
+
+
+
+ - git push —set-upstream origin bugfix/JET-296…
+
+
+
+Ex:
+
+
+
+ git push --set-upstream origin bugfix/JET-288-remove-delivery-time
+
+
+
+
+
+——
+
+
+
+Revert
+
+
+
+ - git revert nome_do_arquivo
+
+
+
+——
+
+
+
+Status do que vai ser cogitado:
+
+
+
+ - git status
+
+
+
+——
+
+
+
+Commit
+
+
+
+ - a = adiciona tudo
+
+ - m comment
+
+
+
+ - git commit -am “NOME_DA_TASK-what-do-you-do”
+
+ - git commit -am “JET-288-do-somenthing-important”
+
+
+
+——
+
+
+
+Push
+
+
+
+ - git push
+
+
+
+——
+
+
+
+——
+
+
+
+Mostrar seu commit como ele esta:
+Git show
+
+
+
+——
+
+
+
+Diferenças de branch
+
+
+
+Git diff origin/master
+
+
+
+——
+
+
+
+Mergear com a master
+
+
+
+Git merge master
+
+
+
+——
+
+
+
+STASH
+
+
+
+Supondo que você esteja querendo colocar de canto algumas alterações, pode usar o comando sem parâmetros:
+
+
+
+ $ git stash
+
+
+
+____
+
+
+
+
+
+Para saber quantos e quais stashes você tem, pode usar o comando de listagem:
+
+
+
+ $ git stash list
+
+
+
+——
+
+
+
+E se você esqueceu o que tem em um stash, use:
+
+ $ git stash show stash@{1}
+
+
+
+——
+
+
+
+Ou para visualizar os detalhes da alteração do stash:
+
+ $ git stash show -p stash@{1}
+
+
+
+——
+
+
+
+Agora, vamos supor que você deseje aplicar novamente as alterações do último stash que você criou, sem apagá-lo. Para tanto, use:
+
+ $ git stash apply
+
+
+
+——
+
+
+
+Você também pode indicar o stash que deseja recuperar (use a nomenclatura mostrada pelo git stash list):
+
+ $ git stash apply stash@{3}
+
+
+
+——
+
+
+
+Por outro lado, se você quer aplicar o stash e apagá-lo logo depois, use:
+
+ $ git stash pop
+
+
+
+——
+
+
+
+E se definitivamente você quer apagar um stash em especial, pode usar o comando:
+
+ $ git stash drop stash@{2}
+
+
+
+——
+
+https://imasters.com.br/desenvolvimento/como-fazer-squash-de-commits-no-git
+
+
+
+Squash
+
+
+
+Exemplo:
+
+
+
+Git checkout master
+
+Git pull subbranch master
+
+Git rebase -I master
+
+Squash no lugar de pick pra agrupar
+
+Git push -f [ cuidado …. ]
+
+
+
+—
+
+Git merge - - continue
+
+Git push
+

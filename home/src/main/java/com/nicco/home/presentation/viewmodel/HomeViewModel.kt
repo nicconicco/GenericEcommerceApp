@@ -1,6 +1,7 @@
 package com.nicco.home.presentation.viewmodel
 
 import androidx.lifecycle.*
+import com.nicco.home.data.repository.HomeRepository
 import com.nicco.home.data.repository.HomeRepositoryImp
 import com.nicco.home.presentation.model.HomeCardModel
 import com.nicco.home.presentation.viewmodel.HomeViewAction.HomeLoading
@@ -17,7 +18,7 @@ sealed class HomeViewAction {
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class HomeViewModel(private val repository: HomeRepositoryImp) : ViewModel() {
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     private val _actionView = MediatorLiveData<HomeViewAction>()
     val actionView: LiveData<HomeViewAction>

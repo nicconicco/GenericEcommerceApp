@@ -5,5 +5,5 @@ import com.nicco.home.data.repository.HomeRepositoryImp
 import org.koin.dsl.module
 
 val homeRepositorylModule = module {
-    factory <HomeRepository> { HomeRepositoryImp(get()) }
+    single <HomeRepository> { HomeRepositoryImp(get()) }
 }

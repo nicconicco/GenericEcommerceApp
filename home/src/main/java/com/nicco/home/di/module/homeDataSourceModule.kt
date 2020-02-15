@@ -5,5 +5,5 @@ import com.nicco.home.data.datasource.RemoteHomeDataSourceImp
 import org.koin.dsl.module
 
 val homeDataSourcelModule = module {
-    factory<RemoteHomeDataSource> { get() }
+    factory<RemoteHomeDataSource> { RemoteHomeDataSourceImp() }
 }

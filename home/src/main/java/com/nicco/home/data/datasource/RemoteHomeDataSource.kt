@@ -5,5 +5,5 @@ import com.nicco.home.presentation.model.HomeCardModel
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteHomeDataSource {
-    suspend fun getListHome(): Flow<List<HomeCardResponse>>?
+    suspend fun getListHome(): List<HomeCardResponse>?
 }

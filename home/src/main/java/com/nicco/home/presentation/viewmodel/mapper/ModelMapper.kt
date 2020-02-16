@@ -1,13 +1,12 @@
 package com.nicco.home.presentation.viewmodel.mapper
 
-import androidx.lifecycle.LiveData
 import com.nicco.home.data.retrofit.HomeCardResponse
 import com.nicco.home.presentation.model.HomeCardModel
 
 object ModelMapper {
-    fun map(response: LiveData<List<HomeCardResponse>>): List<HomeCardModel> {
+    fun map(response: List<HomeCardResponse>): List<HomeCardModel> {
         var list = listOf<HomeCardModel>()
-        val result = response.value
+        val result = response
 
         result?.let {
             list = result.map { homeCardResponse ->

@@ -20,6 +20,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class HomeFragment : Fragment() {
 
     private val loadFeatures by lazy {
@@ -36,7 +38,6 @@ class HomeFragment : Fragment() {
 
     private fun injectFeatures() = loadFeatures
 
-    @ExperimentalCoroutinesApi
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val adapter by lazy {
@@ -48,8 +49,6 @@ class HomeFragment : Fragment() {
         injectFeatures()
     }
 
-    @ExperimentalCoroutinesApi
-    @FlowPreview
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,8 +61,6 @@ class HomeFragment : Fragment() {
         }.root
     }
 
-    @FlowPreview
-    @ExperimentalCoroutinesApi
     private fun subscribeUi(adapter: HomeCardAdapter) {
         homeViewModel.actionView.observe(viewLifecycleOwner) { state ->
             when (state) {

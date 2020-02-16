@@ -6,5 +6,5 @@ import com.nicco.home.presentation.model.HomeCardModel
 import kotlinx.coroutines.flow.Flow
 
 class HomeRepositoryImp(val rermoteHome: RemoteHomeDataSource) : HomeRepository {
-    override suspend fun getListHome(): Flow<List<HomeCardResponse>>? = rermoteHome.getListHome()
+    override suspend fun getListHome(): List<HomeCardResponse>? = rermoteHome.getListHome()
 }

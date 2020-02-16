@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 
 interface HomeCardApi {
-    @GET("/home/home_card_list")
+    @GET("homeCard")
     suspend fun getHomeCard(): Flow<List<HomeCardResponse>>
 }

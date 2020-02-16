@@ -27,7 +27,7 @@ android {
         debug {
             try {
                 minifyEnabled false
-                buildConfigField "String", "API_URL", "\"https://api.home.fake/\""
+                buildConfigField "String", "API_URL", "\"https://5e488360728fde0014e34e31.mockapi.io/api/v1/\""
                 debuggable true
             } catch (e) {
                 throw e
